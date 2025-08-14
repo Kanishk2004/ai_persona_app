@@ -25,12 +25,12 @@ export default function PersonaSelector({
 	disabled = false,
 }) {
 	return (
-		<div className="flex flex-col space-y-3 p-4 bg-slate-800 rounded-lg shadow-sm border border-slate-700">
-			<h3 className="text-sm font-semibold text-slate-200 mb-2">
+		<div className="flex flex-col space-y-3 p-3 sm:p-4 bg-slate-800 rounded-lg shadow-sm border border-slate-700">
+			<h3 className="text-xs sm:text-sm font-semibold text-slate-200 mb-2">
 				Choose AI Persona
 			</h3>
 
-			<div className="flex space-x-3">
+			<div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3">
 				{personas.map((persona) => {
 					const isSelected = persona.id === currentPersona;
 
@@ -39,7 +39,7 @@ export default function PersonaSelector({
 							key={persona.id}
 							onClick={() => !disabled && onPersonaChange(persona.id)}
 							disabled={disabled}
-							className={`relative flex flex-col items-center p-3 rounded-lg border-2 transition-all duration-200 ${
+							className={`relative flex flex-row sm:flex-col items-center p-3 rounded-lg border-2 transition-all duration-200 ${
 								isSelected
 									? 'border-current shadow-md'
 									: 'border-slate-600 hover:border-slate-500'
@@ -54,23 +54,23 @@ export default function PersonaSelector({
 							whileTap={!disabled ? { scale: 0.98 } : {}}>
 							{/* Avatar */}
 							<div
-								className="w-12 h-12 rounded-full mb-2 flex items-center justify-center text-white font-bold text-lg"
+								className="w-10 h-10 sm:w-12 sm:h-12 rounded-full mb-0 sm:mb-2 mr-3 sm:mr-0 flex items-center justify-center text-white font-bold text-lg flex-shrink-0"
 								style={{ backgroundColor: persona.color }}>
 								<Image
 									src={persona.avatar}
 									alt={persona.name}
 									className="rounded-full"
-									height={65}
-									width={65}
+									height={48}
+									width={48}
 								/>
 							</div>
 
 							{/* Persona Info */}
-							<div className="text-center">
+							<div className="text-left sm:text-center flex-1">
 								<h4 className="text-sm font-medium text-white">
 									{persona.name}
 								</h4>
-								<p className="text-xs text-slate-400 mt-1">
+								<p className="text-xs text-slate-400 mt-1 line-clamp-2 sm:line-clamp-none">
 									{persona.description}
 								</p>
 							</div>
@@ -78,7 +78,7 @@ export default function PersonaSelector({
 							{/* Selection indicator */}
 							{isSelected && (
 								<motion.div
-									className="absolute -top-1 -right-1 w-4 h-4 rounded-full flex items-center justify-center"
+									className="w-4 h-4 rounded-full flex items-center justify-center ml-2 sm:ml-0 sm:absolute sm:-top-1 sm:-right-1"
 									style={{ backgroundColor: persona.color }}
 									initial={{ scale: 0 }}
 									animate={{ scale: 1 }}
@@ -109,13 +109,13 @@ export default function PersonaSelector({
 					transition={{ duration: 0.2 }}>
 					<div className="flex items-center space-x-2">
 						<div
-							className="w-2 h-2 rounded-full"
+							className="w-2 h-2 rounded-full flex-shrink-0"
 							style={{
 								backgroundColor: personas.find((p) => p.id === currentPersona)
 									?.color,
 							}}
 						/>
-						<span className="text-sm text-slate-300">
+						<span className="text-xs sm:text-sm text-slate-300">
 							Currently chatting with{' '}
 							<span className="font-medium text-white">
 								{personas.find((p) => p.id === currentPersona)?.name}

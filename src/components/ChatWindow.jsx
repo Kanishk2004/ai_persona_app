@@ -73,12 +73,12 @@ export default function ChatWindow() {
 	return (
 		<div className="flex flex-col h-screen bg-slate-900">
 			{/* Header */}
-			<div className="flex items-center justify-between p-4 bg-slate-800 border-b border-slate-700 shadow-sm">
-				<div className="flex items-center space-x-3">
-					<h1 className="text-xl font-bold text-white">
+			<div className="flex items-center justify-between p-3 sm:p-4 bg-slate-800 border-b border-slate-700 shadow-sm">
+				<div className="flex items-center space-x-2 sm:space-x-3 min-w-0 flex-1">
+					<h1 className="text-lg sm:text-xl font-bold text-white truncate">
 						<a href="/">AI Persona Chat</a>
 					</h1>
-					<div className="text-xs text-slate-400">
+					<div className="hidden sm:block text-xs text-slate-400">
 						by{' '}
 						<a
 							href="https://github.com/Kanishk2004"
@@ -90,11 +90,11 @@ export default function ChatWindow() {
 					</div>
 				</div>
 
-				<div className="flex items-center space-x-3">
+				<div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
 					{/* Developer Info Button */}
 					<motion.button
 						onClick={() => setShowDeveloperInfo(!showDeveloperInfo)}
-						className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg text-sm font-medium transition-colors"
+						className="px-2 sm:px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-lg text-xs sm:text-sm font-medium transition-colors"
 						whileHover={{ scale: 1.02 }}
 						whileTap={{ scale: 0.98 }}
 						title="Developer Info">
@@ -109,20 +109,22 @@ export default function ChatWindow() {
 					{/* Persona toggle button */}
 					<motion.button
 						onClick={() => setShowPersonaSelector(!showPersonaSelector)}
-						className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-sm font-medium transition-colors"
+						className="px-2 sm:px-4 py-2 bg-slate-700 hover:bg-slate-600 text-white rounded-lg text-xs sm:text-sm font-medium transition-colors"
 						whileHover={{ scale: 1.02 }}
 						whileTap={{ scale: 0.98 }}>
-						Switch Persona
+						<span className="hidden sm:inline">Switch Persona</span>
+						<span className="sm:hidden">Switch</span>
 					</motion.button>
 
 					{/* Clear chat button */}
 					{hasMessages && (
 						<motion.button
 							onClick={clearChat}
-							className="px-4 py-2 bg-red-900 hover:bg-red-800 text-red-200 rounded-lg text-sm font-medium transition-colors"
+							className="px-2 sm:px-4 py-2 bg-red-900 hover:bg-red-800 text-red-200 rounded-lg text-xs sm:text-sm font-medium transition-colors"
 							whileHover={{ scale: 1.02 }}
 							whileTap={{ scale: 0.98 }}>
-							Clear Chat
+							<span className="hidden sm:inline">Clear Chat</span>
+							<span className="sm:hidden">Clear</span>
 						</motion.button>
 					)}
 				</div>
@@ -137,97 +139,101 @@ export default function ChatWindow() {
 						exit={{ opacity: 0, height: 0 }}
 						transition={{ duration: 0.3 }}
 						className="border-b bg-slate-800 border-slate-700">
-						<div className="p-4">
-							<div className="bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg p-6 border border-slate-600">
-								<div className="flex items-center space-x-4 mb-4">
-									<div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+						<div className="p-3 sm:p-4">
+							<div className="bg-gradient-to-r from-blue-900 to-purple-900 rounded-lg p-4 sm:p-6 border border-slate-600">
+								<div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4 mb-4">
+									<div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
 										<Image
 											src={'/picofme.png'}
 											alt="Kanishk Chandna"
 											className="rounded-full"
-											height={65}
-											width={65}
+											height={48}
+											width={48}
 										/>
 									</div>
-									<div>
-										<h3 className="text-xl font-bold text-white">
+									<div className="text-center sm:text-left">
+										<h3 className="text-lg sm:text-xl font-bold text-white">
 											Kanishk Chandna
 										</h3>
-										<p className="text-blue-300">
+										<p className="text-blue-300 text-sm sm:text-base">
 											Full Stack Developer & AI Enthusiast
 										</p>
 									</div>
 								</div>
 
-								<p className="text-slate-300 mb-4">
+								<p className="text-slate-300 mb-4 text-sm sm:text-base text-center sm:text-left">
 									Passionate about building modern web applications with AI
 									integration. This chat app showcases the power of multiple AI
 									personas and seamless user experience.
 								</p>
 
-								<div className="flex flex-wrap gap-3">
+								<div className="flex flex-wrap gap-2 sm:gap-3 justify-center sm:justify-start">
 									<a
 										href="https://www.kanishk.codes/"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="flex items-center px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-lg text-white transition-colors">
+										className="flex items-center px-3 sm:px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 rounded-lg text-white transition-colors text-sm">
 										<Image
 											src="/portfolio.svg"
 											alt="Portfolio"
-											className="mr-2"
-											width={24}
-											height={24}
+											className="mr-1 sm:mr-2"
+											width={16}
+											height={16}
 										/>
-										Portfolio
+										<span className="hidden sm:inline">Portfolio</span>
+										<span className="sm:hidden">Site</span>
 									</a>
 
 									<a
 										href="https://github.com/Kanishk2004"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="flex items-center px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-slate-300 hover:text-white transition-colors">
+										className="flex items-center px-3 sm:px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-slate-300 hover:text-white transition-colors text-sm">
 										<svg
-											className="w-4 h-4 mr-2"
+											className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
 											fill="currentColor"
 											viewBox="0 0 24 24">
 											<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
 										</svg>
-										GitHub
+										<span className="hidden sm:inline">GitHub</span>
+										<span className="sm:hidden">Git</span>
 									</a>
 
 									<a
 										href="https://x.com/Kanishk_fr"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="flex items-center px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-slate-300 hover:text-white transition-colors">
+										className="flex items-center px-3 sm:px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-slate-300 hover:text-white transition-colors text-sm">
 										<svg
-											className="w-4 h-4 mr-2"
+											className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
 											fill="currentColor"
 											viewBox="0 0 24 24">
 											<path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
 										</svg>
-										Twitter
+										<span className="hidden sm:inline">Twitter</span>
+										<span className="sm:hidden">X</span>
 									</a>
 
 									<a
 										href="https://www.linkedin.com/in/kanishk-chandna-9553931b0/"
 										target="_blank"
 										rel="noopener noreferrer"
-										className="flex items-center px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-slate-300 hover:text-white transition-colors">
+										className="flex items-center px-3 sm:px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-slate-300 hover:text-white transition-colors text-sm">
 										<svg
-											className="w-4 h-4 mr-2"
+											className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
 											fill="currentColor"
 											viewBox="0 0 24 24">
 											<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
 										</svg>
-										LinkedIn
+										<span className="hidden sm:inline">LinkedIn</span>
+										<span className="sm:hidden">In</span>
 									</a>
 
 									<button
 										onClick={() => setShowDeveloperInfo(false)}
-										className="flex items-center px-4 py-2 bg-red-900 hover:bg-red-800 rounded-lg text-red-200 hover:text-white transition-colors ml-auto">
+										className="flex items-center px-3 sm:px-4 py-2 bg-red-900 hover:bg-red-800 rounded-lg text-red-200 hover:text-white transition-colors ml-auto text-sm">
 										<svg
-											className="w-4 h-4 mr-2"
+											className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2"
 											fill="none"
 											stroke="currentColor"
 											viewBox="0 0 24 24">
@@ -238,7 +244,8 @@ export default function ChatWindow() {
 												d="M6 18L18 6M6 6l12 12"
 											/>
 										</svg>
-										Close
+										<span className="hidden sm:inline">Close</span>
+										<span className="sm:hidden">×</span>
 									</button>
 								</div>
 							</div>
@@ -269,22 +276,22 @@ export default function ChatWindow() {
 			</AnimatePresence>
 
 			{/* Chat Messages */}
-			<div className="flex-1 overflow-y-auto p-4 space-y-4">
+			<div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-4">
 				{!hasMessages && (
 					<motion.div
-						className="flex flex-col items-center justify-center h-full text-center"
+						className="flex flex-col items-center justify-center h-full text-center px-4"
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						transition={{ delay: 0.2 }}>
 						<div className="max-w-md mx-auto">
-							<h2 className="text-2xl font-bold text-white mb-4">
+							<h2 className="text-xl sm:text-2xl font-bold text-white mb-4">
 								Welcome to AI Persona Chat! 👋
 							</h2>
-							<p className="text-slate-300 mb-4">
+							<p className="text-slate-300 mb-4 text-sm sm:text-base">
 								Start a conversation with Hitesh Chaudhary or Piyush Garg. Each
 								persona has their unique expertise and personality!
 							</p>
-							<p className="text-slate-400 text-sm mb-6">
+							<p className="text-slate-400 text-xs sm:text-sm mb-6">
 								Crafted with ❤️ by{' '}
 								<span className="text-blue-400 font-medium">
 									Kanishk Chandna
@@ -346,8 +353,8 @@ export default function ChatWindow() {
 			</div>
 
 			{/* Message Input */}
-			<div className="p-4 bg-slate-800 border-t border-slate-700">
-				<form onSubmit={handleSubmit} className="flex space-x-3">
+			<div className="p-3 sm:p-4 bg-slate-800 border-t border-slate-700">
+				<form onSubmit={handleSubmit} className="flex space-x-2 sm:space-x-3">
 					<div className="flex-1">
 						<textarea
 							ref={inputRef}
@@ -355,17 +362,17 @@ export default function ChatWindow() {
 							onChange={(e) => setInputMessage(e.target.value)}
 							onKeyDown={handleKeyDown}
 							placeholder="Type your message here... (Press Enter to send, Shift+Enter for new line)"
-							className="w-full px-4 py-3 border border-slate-600 bg-slate-700 text-white placeholder-slate-400 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+							className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-slate-600 bg-slate-700 text-white placeholder-slate-400 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base"
 							rows={1}
 							disabled={isLoading}
-							style={{ minHeight: '48px', maxHeight: '120px' }}
+							style={{ minHeight: '40px', maxHeight: '120px' }}
 						/>
 					</div>
 
 					<motion.button
 						type="submit"
 						disabled={!inputMessage.trim() || isLoading}
-						className={`px-6 py-3 rounded-lg font-medium transition-colors ${
+						className={`px-3 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition-colors text-sm sm:text-base ${
 							!inputMessage.trim() || isLoading
 								? 'bg-slate-600 text-slate-400 cursor-not-allowed'
 								: 'bg-blue-600 hover:bg-blue-700 text-white'
@@ -375,18 +382,19 @@ export default function ChatWindow() {
 						}
 						whileTap={!inputMessage.trim() || isLoading ? {} : { scale: 0.98 }}>
 						{isLoading ? (
-							<div className="flex items-center space-x-2">
-								<div className="w-4 h-4 border-2 border-slate-400 border-t-transparent rounded-full animate-spin" />
-								<span>Sending...</span>
+							<div className="flex items-center space-x-1 sm:space-x-2">
+								<div className="w-3 h-3 sm:w-4 sm:h-4 border-2 border-slate-400 border-t-transparent rounded-full animate-spin" />
+								<span className="hidden sm:inline">Sending...</span>
+								<span className="sm:hidden">...</span>
 							</div>
 						) : (
-							'Send'
+							<span>Send</span>
 						)}
 					</motion.button>
 				</form>
 
 				{/* Character count and tips */}
-				<div className="flex items-center justify-between mt-2">
+				<div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-2 space-y-1 sm:space-y-0">
 					<p className="text-xs text-slate-400">
 						Current persona:{' '}
 						<span className="font-medium text-slate-300">{currentPersona}</span>
