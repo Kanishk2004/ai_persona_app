@@ -1,26 +1,161 @@
+/**
+ * Global Styles for AI Persona Chat App
+ * 
+ * This file contains TailwindCSS imports and custom global styles
+ * for the chat application including animations and utility classes.
+ */
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Dark theme as default */
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --background-secondary: #1e293b;
+  --background-tertiary: #334155;
+  --border: #475569;
+  --border-light: #64748b;
+  --text-muted: #94a3b8;
+  --text-secondary: #cbd5e1;
+  
+  /* Custom color variables for personas */
+  --hitesh-color: #60a5fa;
+  --piyush-color: #34d399;
+  
+  /* Chat specific variables */
+  --chat-bubble-radius: 1.5rem;
+  --message-spacing: 1rem;
+  
+  /* Dark theme specific colors */
+  --user-bubble-bg: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+  --assistant-bubble-bg: #1e293b;
+  --input-bg: #1e293b;
+  --card-bg: #1e293b;
+  --hover-bg: #334155;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+}
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-light);
+}
+
+/* Chat message animations */
+@keyframes messageSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typingDots {
+  0%, 20% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+  80%, 100% {
+    opacity: 0.3;
+  }
+}
+
+/* Custom utility classes */
+.message-enter {
+  animation: messageSlideIn 0.3s ease-out;
+}
+
+.typing-dot {
+  animation: typingDots 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Persona-specific styles */
+.persona-hitesh {
+  --persona-color: var(--hitesh-color);
+}
+
+.persona-piyush {
+  --persona-color: var(--piyush-color);
+}
+
+/* Message bubble styles */
+.message-bubble {
+  border-radius: var(--chat-bubble-radius);
+  margin-bottom: var(--message-spacing);
+}
+
+.message-bubble.user {
+  background: var(--user-bubble-bg);
+  color: white;
+}
+
+.message-bubble.assistant {
+  background: var(--assistant-bubble-bg);
+  border: 1px solid var(--border);
+  color: var(--foreground);
+}
+
+/* Smooth focus styles */
+input:focus,
+textarea:focus,
+button:focus {
+  outline: 2px solid var(--hitesh-color);
+  outline-offset: 2px;
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  .message-bubble {
+    max-width: 85%;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
 }

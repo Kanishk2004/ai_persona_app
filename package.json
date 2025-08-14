@@ -1,9 +1,25 @@
 {
-  "name": "ai_persona_chat_app",
-  "version": "0.1.0",
+  "name": "ai-persona-chat-app",
+  "version": "1.0.0",
+  "description": "A sophisticated multi-persona AI chat application with OpenAI and Gemini integration",
   "private": true,
+  "keywords": ["ai", "chat", "persona", "openai", "gemini", "nextjs", "react"],
+  "author": {
+    "name": "Kanishk Chandna",
+    "email": "kanishkchandna@gmail.com",
+    "url": "https://github.com/Kanishk2004"
+  },
+  "homepage": "https://github.com/Kanishk2004/ai-persona-chat-app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kanishk2004/ai-persona-chat-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Kanishk2004/ai-persona-chat-app/issues"
+  },
+  "license": "MIT",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
