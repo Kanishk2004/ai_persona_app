@@ -3,7 +3,15 @@
   "version": "1.0.0",
   "description": "A sophisticated multi-persona AI chat application with OpenAI and Gemini integration",
   "private": true,
-  "keywords": ["ai", "chat", "persona", "openai", "gemini", "nextjs", "react"],
+  "keywords": [
+    "ai",
+    "chat",
+    "persona",
+    "openai",
+    "gemini",
+    "nextjs",
+    "react"
+  ],
   "author": {
     "name": "Kanishk Chandna",
     "email": "kanishkchandna@gmail.com",
@@ -35,6 +43,7 @@
     "postcss": "^8.5.6",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-markdown": "^10.1.0",
     "typescript": "^5.9.2"
   },
   "devDependencies": {

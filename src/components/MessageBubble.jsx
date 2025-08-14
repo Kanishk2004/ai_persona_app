@@ -9,6 +9,9 @@
 
 import { motion } from 'framer-motion';
 import { personas } from '../lib/personas';
+import Image from 'next/image';
+import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 /**
  * Individual message bubble component
@@ -20,6 +23,7 @@ import { personas } from '../lib/personas';
 export default function MessageBubble({ message, isLast = false }) {
   const isUser = message.role === 'user';
   const persona = personas.find(p => p.id === message.persona);
+  const [imageError, setImageError] = useState(false);
   
   // Format timestamp
   const formatTime = (timestamp) => {
@@ -70,9 +74,38 @@ export default function MessageBubble({ message, isLast = false }) {
           )}
           
           {/* Message text */}
-          <p className="text-sm leading-relaxed whitespace-pre-wrap">
-            {message.content}
-          </p>
+          <div className="text-sm leading-relaxed">
+            <ReactMarkdown
+              components={{
+                // Custom styling for markdown elements
+                strong: ({ children }) => (
+                  <strong className="font-bold text-white">{children}</strong>
+                ),
+                em: ({ children }) => (
+                  <em className="italic">{children}</em>
+                ),
+                code: ({ children }) => (
+                  <code className="bg-slate-700 px-1 py-0.5 rounded text-xs font-mono">
+                    {children}
+                  </code>
+                ),
+                p: ({ children }) => (
+                  <p className="mb-2 last:mb-0">{children}</p>
+                ),
+                ul: ({ children }) => (
+                  <ul className="list-disc ml-4 mb-2">{children}</ul>
+                ),
+                ol: ({ children }) => (
+                  <ol className="list-decimal ml-4 mb-2">{children}</ol>
+                ),
+                li: ({ children }) => (
+                  <li className="mb-1">{children}</li>
+                ),
+              }}
+            >
+              {message.content}
+            </ReactMarkdown>
+          </div>
         </div>
         
         {/* Timestamp */}
@@ -85,11 +118,23 @@ export default function MessageBubble({ message, isLast = false }) {
       
       {/* Avatar for assistant messages */}
       {!isUser && persona && (
-        <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center mr-3 order-0">
-          <div 
-            className="w-6 h-6 rounded-full"
-            style={{ backgroundColor: persona.color }}
-          />
+        <div className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center mr-3 order-0 overflow-hidden border-2 border-slate-600">
+          {!imageError ? (
+            <Image
+              src={persona.avatar}
+              alt={`${persona.name} avatar`}
+              width={32}
+              height={32}
+              className="w-full h-full object-cover rounded-full"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            // Fallback colored circle if image fails to load
+            <div 
+              className="w-6 h-6 rounded-full"
+              style={{ backgroundColor: persona.color }}
+            />
+          )}
         </div>
       )}
     </motion.div>
